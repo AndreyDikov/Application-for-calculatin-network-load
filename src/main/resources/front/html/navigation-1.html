@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница с кнопками-ссылками</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f1f1f1;
+        }
+      .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+      .button-link {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+      .button-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons-container">
+        <a th:href="@{/}" class="button-link">Выполнить расчет</a>
+        <a th:href="@{/}" class="button-link">История расчетов</a>
+        <a th:href="@{/}" class="button-link">Личный кабинет</a>
+    </div>
+</body>
+</html>
