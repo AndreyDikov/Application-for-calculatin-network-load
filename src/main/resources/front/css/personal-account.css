@@ -1,3 +1,26 @@
 .form-container {
     max-width: 600px;
+    /* background-color: #7B9464; */
+}
+
+.castome-tema {
+    background-color: #EEECED;
+}
+
+.center-table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    width: fit-content;
+    /* Задает ширину таблицы равной содержимому */
+    max-width: 80%;
+    /* Максимальная ширина таблицы */
+}
+
+.center-text {
+    text-align: center;
+}
+
+.ims {
+    width: 40px;
 }
