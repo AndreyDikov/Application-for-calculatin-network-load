@@ -94,13 +94,44 @@
 					</div>
 					<div class="pt-4">
 						<button type="submit" class="btn btn-primary">Оформить подписку</button>
-						<button type="submit" class="btn">Редактировать профиль</button>
-						<button type="submit" class="btn">Изменить пароль</button>
+						<button id="editProfileButton" type="button" class="btn btn-primary">Редактировать профиль</button>
+						<button id="saveChangesButton" type="button" class="btn btn-primary"
+							style="display:none;">Сохранить</button>
+						<button type="submit" class="btn btn-primary">Изменить пароль</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script>
+		document.getElementById('editProfileButton').addEventListener('click', function () {
+			var inputs = document.querySelectorAll('input');
+			inputs.forEach(function (input) {
+				input.removeAttribute('disabled');
+			});
+
+			this.style.display = 'none';
+			document.getElementById('saveChangesButton').style.display = 'inline-block';
+
+			formSaved = true;
+		});
+
+		document.getElementById('saveChangesButton').addEventListener('click', function () {
+			if (!formSaved) return;
+
+			// alert('Изменения сохранены');
+
+			var inputs = document.querySelectorAll('input');
+			inputs.forEach(function (input) {
+				input.setAttribute('disabled', '');
+			});
+			this.style.display = 'none';
+			document.getElementById('editProfileButton').style.display = 'inline-block';
+
+			formSaved = false;
+		});
+	</script>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
