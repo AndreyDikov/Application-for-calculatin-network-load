@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.controllers;
+package ru.example.appForCalculatingNetLoad.security.auth.controllers;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.AuthenticationRequest;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.AuthenticationResponse;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.RegisterRequest;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.services.AuthenticationService;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationRequest;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationResponse;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.RegisterRequest;
+import ru.example.appForCalculatingNetLoad.security.auth.services.AuthenticationService;
 
 @Controller
 @RequiredArgsConstructor
@@ -47,6 +47,6 @@ public class AuthenticationController {
         Cookie cookie = new Cookie("token", authenticationResponse.getToken());
         cookie.setPath("/");
         httpServletResponse.addCookie(cookie);
-        return "redirect:/";
+        return "redirect:/personal-account";
     }
 }

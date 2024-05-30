@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.configurations;
+package ru.example.appForCalculatingNetLoad.security.configurations;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.services.SecurityUserService;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.services.SecurityUserService;
 
 @Configuration
 @RequiredArgsConstructor

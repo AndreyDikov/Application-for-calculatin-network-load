@@ -1,16 +1,16 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.services;
+package ru.example.appForCalculatingNetLoad.security.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.AuthenticationRequest;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.AuthenticationResponse;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto.RegisterRequest;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.entities.SecurityUser;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.entities.enums.UserRole;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.services.SecurityUserService;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationRequest;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationResponse;
+import ru.example.appForCalculatingNetLoad.security.auth.dto.RegisterRequest;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.enums.UserRole;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.services.SecurityUserService;
 
 import java.util.Set;
 
@@ -34,7 +34,7 @@ public class AuthenticationService {
         SecurityUser securityUser = SecurityUser.builder()
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .username(request.getEmail())
+                .name(request.getEmail())
                 .surname(request.getSurname())
                 .patronymic(request.getPatronymic())
                 .phone(request.getPhone())

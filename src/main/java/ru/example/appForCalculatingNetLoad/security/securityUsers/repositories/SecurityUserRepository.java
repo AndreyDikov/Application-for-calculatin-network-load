@@ -1,7 +1,7 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.repositories;
+package ru.example.appForCalculatingNetLoad.security.securityUsers.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.entities.SecurityUser;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
 import java.util.Optional;
 
