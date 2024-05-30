@@ -31,6 +31,7 @@
 			</div>
 		</div>
 	</nav>
+	<div th:replace="~{fragments/header :: header}"></div>
 	<!-- тоже обернуть общим layout -->
 	<div class="d-flex justify-content-center">
 		<div class="form-container">
@@ -38,58 +39,61 @@
 				<form class="ga-2">
 					<div class="row">
 						<div class="col-4 ">
-							<span class="input-group-text" for="name">Имя:</span>
+							<span class="input-group-text" for="username">Имя:</span>
 						</div>
 						<div class="col-8 ">
-							<!-- поменяй поле при режиме редактирования -->
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}" value="Иван">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.name}" value="Иван">
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="surname">Фамилия:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}" value="Иванов">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.surname}" value="Иванов">
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="patronymic">Отчество:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}" value="Иванович">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.patronymic}" value="Иванович">
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="email">Почта:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}"
-								value="ivanov@example.com">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.email}" value="ivanov@example.com">
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="phone">Телефон:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}"
-								value="+7 912 345-67-89">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.phone}" value="+7 912 345-67-89">
 						</div>
 					</div>
-
+					<br>
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="subscriptionStatus">Статус подписки:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text" th:text="*{name} + ' ' + *{surname}" value="Активна">
+							<input disabled class="form-control" type="text"
+								   th:value="${currentUser.active}" value="Активна">
 						</div>
 					</div>
 					<div class="pt-4">
