@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.dto;
+package ru.example.appForCalculatingNetLoad.security.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.auth.services;
+package ru.example.appForCalculatingNetLoad.security.auth.services;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

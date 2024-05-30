@@ -1,11 +1,11 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.entities;
+package ru.example.appForCalculatingNetLoad.security.securityUsers.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.security.securityUsers.entities.enums.UserRole;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.enums.UserRole;
 
 import java.util.Collection;
 import java.util.Set;
@@ -24,7 +24,7 @@ public class SecurityUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String name;
     private String surname;
     private String patronymic;
     private String email;
