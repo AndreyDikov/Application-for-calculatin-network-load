@@ -24,3 +24,21 @@
 .ims {
     width: 40px;
 }
+
+.cmd {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    width: fit-content;
+    /* Задает ширину таблицы равной содержимому */
+    max-width: 100%;
+    /* Максимальная ширина таблицы */
+}
+
+.mr {
+    margin-right: 2px;
+}
+
+.mr-2 {
+    margin-right: 25px;
+}
