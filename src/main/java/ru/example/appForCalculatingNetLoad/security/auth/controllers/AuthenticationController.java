@@ -1,6 +1,5 @@
 package ru.example.appForCalculatingNetLoad.security.auth.controllers;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -44,9 +43,7 @@ public class AuthenticationController {
             AuthenticationRequest request,
             HttpServletResponse httpServletResponse) {
         AuthenticationResponse authenticationResponse = authenticationService.authenticate(request);
-        Cookie cookie = new Cookie("token", authenticationResponse.getToken());
-        cookie.setPath("/");
-        httpServletResponse.addCookie(cookie);
+        authenticationService.updateCookie(authenticationResponse, httpServletResponse);
         return "redirect:/personal-account";
     }
 }

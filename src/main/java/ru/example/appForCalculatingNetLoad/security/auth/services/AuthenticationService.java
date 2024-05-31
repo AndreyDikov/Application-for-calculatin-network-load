@@ -1,5 +1,7 @@
 package ru.example.appForCalculatingNetLoad.security.auth.services;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +40,7 @@ public class AuthenticationService {
                 .surname(request.getSurname())
                 .patronymic(request.getPatronymic())
                 .phone(request.getPhone())
-                .active(true) // todo активность сейчас не учитывается
+                .isActive(true) // todo активность сейчас не учитывается
                 .roles(Set.of(UserRole.USER))
                 .build();
 
@@ -73,5 +75,12 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public void updateCookie(AuthenticationResponse authenticationResponse,
+                             HttpServletResponse httpServletResponse) {
+        Cookie cookie = new Cookie("token", authenticationResponse.getToken());
+        cookie.setPath("/");
+        httpServletResponse.addCookie(cookie);
     }
 }
