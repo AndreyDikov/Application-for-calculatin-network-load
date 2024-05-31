@@ -33,13 +33,14 @@ public class SecurityConfiguration {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // todo обновить доступ по ролям
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeRequests()
                 .requestMatchers("/", "/auth/**")
                 .permitAll()
-                .requestMatchers("/squads/**", "/events/**", "/squad-ratings/**")
-                .hasAnyAuthority("FIGHTER", "COMMANDER")
+                .requestMatchers("/personal-account/**")
+                .hasAnyAuthority("USER")
                 .and().formLogin(form -> form.loginPage("/auth/login").failureUrl("/auth/login"))
                 .logout(logout -> logout
                         .logoutUrl("/logout")

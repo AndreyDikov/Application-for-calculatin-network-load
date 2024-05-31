@@ -32,12 +32,6 @@
 			</div>
 		</div>
 	</nav>
-	<form th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}"
-		  method="post" th:object="${currentUser}">
-		<input type="text" id="login" name="login" placeholder="igor329"
-			   th:field="*{name}" required/>
-		<div><input type="submit" value="Тестовая отправка"/></div>
-	</form>
 	<!-- тоже обернуть общим layout -->
 	<div class="d-flex justify-content-center">
 		<div class="form-container">
@@ -108,7 +102,8 @@
 						<button type="button" class="btn btn-primary">Оформить подписку</button>
 						<button id="editProfileButton" type="button" class="btn btn-primary">Редактировать профиль</button>
 						<input type="submit" class="btn btn-primary" value="Сохранить"/>
-						<button type="button" class="btn btn-primary">Изменить пароль</button>
+						<a class="btn btn-primary"
+								th:href="@{/personal-account/update-password}">Изменить пароль</a>
 					</div>
 				</form>
 			</div>
