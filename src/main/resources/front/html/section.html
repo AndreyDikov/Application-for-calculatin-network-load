@@ -34,32 +34,33 @@
   <div class="content center-table">
     <div class=" cmd mb-4">
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Название секции</span>
+        <span class="input-group-text" id="basic-addon3">Названивавые секции</span>
         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">150</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex150">
+        <label class="form-check-label mr-2" for="flex150">150</label>
 
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">200</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex200">
+        <label class="form-check-label mr-2" for="flex200">200</label>
 
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">250</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex250">
+        <label class="form-check-label mr-2" for="flex250">250</label>
 
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">300</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex300">
+        <label class="form-check-label mr-2" for="flex300">300</label>
 
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">Без ограничений</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexNoRestrictions">
+        <label class="form-check-label mr-2" for="flexNoRestrictions">Без ограничений</label>
 
-        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label mr-2" for="flexRadioDefault1">Произвольное значение</label>
+        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRestrictions">
+        <label class="form-check-label mr-2" for="flexRestrictions">Произвольное значение</label>
       </div>
 
       <div class="input-group mt-3">
         <span class="input-group-text" id="basic-addon3">Произвольное ограничение</span>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+        <input disabled type="text" class="form-control" id="custom-value-input"
+          aria-describedby="basic-addon3 basic-addon4">
       </div>
     </div>
     <div class="mb-3">
@@ -92,6 +93,22 @@
       </div>
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const flexRadioDefaultGroup = document.querySelectorAll('[name="flexRadioDefault"]');
+      const customValueInput = document.getElementById('custom-value-input');
+
+      flexRadioDefaultGroup.forEach(radio => {
+        radio.addEventListener('change', function () {
+          if (this.id === 'flexRestrictions') { // Проверяем, выбрана ли радиокнопка "Произвольное значение"
+            customValueInput.disabled = false; // Если да, то делаем поле ввода неактивным
+          } else {
+            customValueInput.disabled = true; // В противном случае - активным
+          }
+        });
+      });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
