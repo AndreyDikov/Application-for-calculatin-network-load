@@ -1,8 +1,8 @@
 package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.CalculationResult;
 
-import lombok.Getter;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.Calculator;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.NetLoadCalculator;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,9 @@ public class CalculationResult {
         updatedSections = new ArrayList<>();
         netLoadCalculator
                 .getSections()
-                .forEach(section -> updatedSections.add(SectionAfterCalculation.calculation(section)));
+                .forEach(section ->
+                        updatedSections.add(SectionAfterCalculation.calculation(section,
+                                        netLoadCalculator.getObject().getCoefficient())));
         calculatedPowerByInputs = Calculator.sumFields(updatedSections, section ->
             Calculator.sumFields(section.getInputs(), Input::getDesignPower));
     }
