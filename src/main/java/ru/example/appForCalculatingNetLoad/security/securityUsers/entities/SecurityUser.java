@@ -30,7 +30,7 @@ public class SecurityUser implements UserDetails {
     private String email;
     private String password;
     private String phone;
-    private Boolean active;
+    private Boolean isActive;
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -66,6 +66,6 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return isActive;
     }
 }

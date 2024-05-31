@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru"
+	  xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -11,7 +12,7 @@
 
 <body class="castome-tema">
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<img src="logo.png" alt="Логотип" class="logo ims">
+		<img th:src="@{/images/logo.png}" alt="Логотип" class="logo ims">
 		<div class="container-fluid row justify-content-evenly ">
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="nav nav-tabs container text-center">
@@ -25,25 +26,31 @@
 						<a class="nav-link active" aria-current="page" href="personal-account.html">Личный кабинет</a>
 					</li>
 					<li class="nav-item col-3">
-						<a class=" nav-link " aria-current="page" href="../html/security/authorization.html">Выход</a>
+						<a class=" nav-link " aria-current="page" th:href="@{/logout}">Выход</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div th:replace="~{fragments/header :: header}"></div>
+	<form th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}"
+		  method="post" th:object="${currentUser}">
+		<input type="text" id="login" name="login" placeholder="igor329"
+			   th:field="*{name}" required/>
+		<div><input type="submit" value="Тестовая отправка"/></div>
+	</form>
 	<!-- тоже обернуть общим layout -->
 	<div class="d-flex justify-content-center">
 		<div class="form-container">
 			<div class="container ">
-				<form class="ga-2">
+				<form class="ga-2" th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}"
+					  method="post" th:object="${currentUser}">
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="username">Имя:</span>
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.name}" value="Иван">
+								   th:field="*{name}" value="Иван">
 						</div>
 					</div>
 					<br>
@@ -53,7 +60,7 @@
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.surname}" value="Иванов">
+								   th:field="*{surname}" value="Иванов">
 						</div>
 					</div>
 					<br>
@@ -63,7 +70,7 @@
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.patronymic}" value="Иванович">
+								   th:field="*{patronymic}" value="Иванович">
 						</div>
 					</div>
 					<br>
@@ -73,7 +80,7 @@
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.email}" value="ivanov@example.com">
+								   th:field="*{email}" value="ivanov@example.com">
 						</div>
 					</div>
 					<br>
@@ -83,7 +90,7 @@
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.phone}" value="+7 912 345-67-89">
+								   th:field="*{phone}" value="+7 912 345-67-89">
 						</div>
 					</div>
 					<br>
@@ -93,15 +100,15 @@
 						</div>
 						<div class="col-8 ">
 							<input disabled class="form-control" type="text"
-								   th:value="${currentUser.active}" value="Активна">
+								   th:field="*{isActive}" value="Активна">
 						</div>
 					</div>
+					<!--todo исправить js-скрипт для кнопки сохранения полей при редактировании профиля-->
 					<div class="pt-4">
-						<button type="submit" class="btn btn-primary">Оформить подписку</button>
+						<button type="button" class="btn btn-primary">Оформить подписку</button>
 						<button id="editProfileButton" type="button" class="btn btn-primary">Редактировать профиль</button>
-						<button id="saveChangesButton" type="button" class="btn btn-primary"
-							style="display:none;">Сохранить</button>
-						<button type="submit" class="btn btn-primary">Изменить пароль</button>
+						<input type="submit" class="btn btn-primary" value="Сохранить"/>
+						<button type="button" class="btn btn-primary">Изменить пароль</button>
 					</div>
 				</form>
 			</div>
