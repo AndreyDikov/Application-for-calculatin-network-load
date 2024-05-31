@@ -6,6 +6,9 @@ import ru.example.appForCalculatingNetLoad.personalAccount.exceptions.PasswordsD
 import ru.example.appForCalculatingNetLoad.personalAccount.exceptions.UserNotFoundException;
 import ru.example.appForCalculatingNetLoad.personalAccount.exceptions.WrongOldPasswordException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 @ControllerAdvice
 public class PersonAccountExceptionController {
 
@@ -15,7 +18,8 @@ public class PersonAccountExceptionController {
             UserNotFoundException.class
     })
     public String handlePasswordsDontMatchException(
-            PasswordsDontMatchException ex) {
-        return "redirect:/personal-account/update-password?message=" + ex.getMessage();
+            Exception ex) throws UnsupportedEncodingException {
+        return "redirect:/personal-account/update-password?message="
+                + URLEncoder.encode(ex.getMessage(), "UTF-8");
     }
 }
