@@ -11,47 +11,22 @@
 </head>
 
 <body class="castome-tema">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <img src="../images/logo.png" alt="Логотип" class="logo ims">
-    <div class="container-fluid row justify-content-evenly ">
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav nav-tabs container text-center">
-          <li class="nav-item col-3">
-            <a class="nav-link active" aria-current="page" href="calculation.html">Выполнить расчет</a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link " aria-current="page" href="calculation-history.html">История рассчетов</a>
-          </li>
-          <li class="nav-item col-3">
-            <a class="nav-link " aria-current="page" href="../../../../../../SquadActivityRating/src/main/resources/templates/personal-account.html">Личный кабинет</a>
-          </li>
-          <li class="nav-item col-3">
-            <a class=" nav-link " aria-current="page" href="../html/security/authorization.html">Выход</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div th:replace="fragments/header :: header"></div>
   <div class="content center-table">
     <div class="actions px-4 mb-4">
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-md-cente mb-2">
             <div>Примечание</div>
-            <select class="form-select" aria-label="Выбор обьекта">
-              <option selected>Этап первый</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <input type="text">
           </div>
           <div class="d-flex align-items-center mt-2">
-            <a href="section.html" class="btn btn-secondary  " tabindex="-1" role="button" aria-disabled="true">Добавить
+            <a th:href="@{/calculator/create-section}" class="btn btn-secondary  " tabindex="-1" role="button" aria-disabled="true">Добавить
               секцию</a>
             <!-- <button type="button" class="btn btn-secondary">Добавить секцию</button> -->
           </div>
           <div class="d-flex align-items-center mt-2">
-            <a href="item.html" class="btn btn-secondary  " tabindex="-1" role="button" aria-disabled="true">Добавить
+            <a th:href="@{/calculator/object-settings}" class="btn btn-secondary  " tabindex="-1" role="button" aria-disabled="true">Добавить
               объект</a>
             <!-- <button type="button" class="btn btn-secondary">Добавить секцию</button> -->
           </div>
@@ -59,22 +34,16 @@
         <div>
           <div class="d-flex align-items-center mb-2">
             <div>Заказчик</div>
-            <select class="form-select" aria-label="Выбор обьекта">
-              <option selected>ООО "Заказчик"</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+            <input type="text">
           </div>
           <!-- накидай сюда рендер вариантов -->
           <div class="d-flex align-items-center ">
             <div>Объект</div>
-            <select class="form-select" aria-label="Выбор обьекта">
-              <option selected>ООО "Обьект"</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              <option value="3">+ Добавить объект</option>
+            <select class="form-select" aria-label="Выбор объекта">
+              <option th:each="object : ${allObjects}"
+                      th:value="${object.name}"
+                      th:text="${object.name}">
+              </option>
             </select>
           </div>
           <div class="d-flex align-items-center mt-2">

@@ -11,27 +11,7 @@
 </head>
 
 <body class="castome-tema">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<img th:src="@{/images/logo.png}" alt="Логотип" class="logo ims">
-		<div class="container-fluid row justify-content-evenly ">
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="nav nav-tabs container text-center">
-					<li class="nav-item col-3">
-						<a class="nav-link " aria-current="page" href="calculation.html">Выполнить расчет</a>
-					</li>
-					<li class="nav-item col-3">
-						<a class="nav-link " aria-current="page" href="calculation-history.html">История рассчетов</a>
-					</li>
-					<li class="nav-item col-3">
-						<a class="nav-link active" aria-current="page" href="personal-account.html">Личный кабинет</a>
-					</li>
-					<li class="nav-item col-3">
-						<a class=" nav-link " aria-current="page" th:href="@{/logout}">Выход</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<div th:replace="fragments/header :: header"></div>
 	<!-- тоже обернуть общим layout -->
 	<div class="d-flex justify-content-center">
 		<div class="form-container">
