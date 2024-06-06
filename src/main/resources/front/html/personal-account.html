@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru"
-	  xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -12,19 +11,17 @@
 
 <body class="castome-tema">
 	<div th:replace="fragments/header :: header"></div>
-	<!-- тоже обернуть общим layout -->
 	<div class="d-flex justify-content-center">
 		<div class="form-container">
 			<div class="container ">
-				<form class="ga-2" th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}"
-					  method="post" th:object="${currentUser}">
+				<form class="ga-2" th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}" method="post"
+					th:object="${currentUser}">
 					<div class="row">
 						<div class="col-4 ">
 							<span class="input-group-text" for="username">Имя:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{name}" value="Иван">
+							<input disabled class="form-control" type="text" th:field="*{name}" value="Иван">
 						</div>
 					</div>
 					<br>
@@ -33,8 +30,7 @@
 							<span class="input-group-text" for="surname">Фамилия:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{surname}" value="Иванов">
+							<input disabled class="form-control" type="text" th:field="*{surname}" value="Иванов">
 						</div>
 					</div>
 					<br>
@@ -43,8 +39,7 @@
 							<span class="input-group-text" for="patronymic">Отчество:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{patronymic}" value="Иванович">
+							<input disabled class="form-control" type="text" th:field="*{patronymic}" value="Иванович">
 						</div>
 					</div>
 					<br>
@@ -53,8 +48,7 @@
 							<span class="input-group-text" for="email">Почта:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{email}" value="ivanov@example.com">
+							<input disabled class="form-control" type="text" th:field="*{email}" value="ivanov@example.com">
 						</div>
 					</div>
 					<br>
@@ -63,8 +57,7 @@
 							<span class="input-group-text" for="phone">Телефон:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{phone}" value="+7 912 345-67-89">
+							<input disabled class="form-control" type="text" th:field="*{phone}" value="+7 912 345-67-89">
 						</div>
 					</div>
 					<br>
@@ -73,23 +66,23 @@
 							<span class="input-group-text" for="subscriptionStatus">Статус подписки:</span>
 						</div>
 						<div class="col-8 ">
-							<input disabled class="form-control" type="text"
-								   th:field="*{isActive}" value="Активна">
+							<input disabled class="form-control" type="text" th:field="*{isActive}" value="Активна">
 						</div>
 					</div>
-					<!--todo исправить js-скрипт для кнопки сохранения полей при редактировании профиля-->
 					<div class="pt-4">
 						<button type="button" class="btn btn-primary">Оформить подписку</button>
 						<button id="editProfileButton" type="button" class="btn btn-primary">Редактировать профиль</button>
-						<input type="submit" class="btn btn-primary" value="Сохранить"/>
-						<a class="btn btn-primary"
-								th:href="@{/personal-account/update-password}">Изменить пароль</a>
+						<input id="saveChangesButton" type="submit" class="btn btn-primary" style="display: none;"
+							value="Сохранить" />
+						<a class="btn btn-primary" th:href="@{/personal-account/update-password}">Изменить пароль</a>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<script>
+		var formSaved = false; // Переменная для отслеживания состояния формы
+
 		document.getElementById('editProfileButton').addEventListener('click', function () {
 			var inputs = document.querySelectorAll('input');
 			inputs.forEach(function (input) {
@@ -104,8 +97,6 @@
 
 		document.getElementById('saveChangesButton').addEventListener('click', function () {
 			if (!formSaved) return;
-
-			// alert('Изменения сохранены');
 
 			var inputs = document.querySelectorAll('input');
 			inputs.forEach(function (input) {
