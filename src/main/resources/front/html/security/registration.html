@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="../../css/registration.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<div class="form-container">
-  <!-- <img class="logo" src="logo.png" alt="Логотип сайта""> -->
-  <h2>Регистрация</h2>
-  <form th:action="@{/auth/register}" method="post" th:object="${registrationForm}">
-    <input type="email" name="email" placeholder="Адрес эл. почты" th:field="*{email}" required>
-    <input type="password" name="password" placeholder="Пароль" th:field="*{password}" required>
-    <input type="text" name="name" placeholder="Имя" th:field="*{username}" required>
-    <input type="text" name="surname" placeholder="Фамилия" th:field="*{surname}" required>
-    <input type="text" name="patronymic" placeholder="Отчество" th:field="*{patronymic}" required>
-    <input type="tel" name="phone" placeholder="Телефон" th:field="*{phone}" required>
-    <button type="submit">Зарегистрироваться</button>
-  </form>
-  <p>Уже зарегистрированы? <a th:href="@{/auth/login}">Вход</a></p>
-</div>
+  <div class="form-container">
+    <h2>Регистрация</h2>
+    <form th:action="@{/auth/register}" method="post" th:object="${registrationForm}">
+      <input type="email" name="email" placeholder="Адрес эл. почты" th:field="*{email}" required>
+      <input type="password" name="password" placeholder="Пароль" th:field="*{password}" required>
+      <input type="text" name="name" placeholder="Имя" th:field="*{username}" required>
+      <input type="text" name="surname" placeholder="Фамилия" th:field="*{surname}" required>
+      <input type="text" name="patronymic" placeholder="Отчество" th:field="*{patronymic}" required>
+      <input type="tel" name="phone" placeholder="Телефон" th:field="*{phone}" required>
+      <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p>Уже зарегистрированы? <a th:href="@{/auth/login}">Вход</a></p>
+  </div>
 </body>
+
 </html>
