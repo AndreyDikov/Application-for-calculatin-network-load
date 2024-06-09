@@ -13,69 +13,53 @@
 <body class="castome-tema">
 	<div th:replace="fragments/header :: header"></div>
 	<div class="d-flex justify-content-center">
-		<div class="form-container">
+		<div class="content center-table form-container">
 			<div class="container center-table">
 				<form class="ga-2" th:action="@{/personal-account/{userId}/update-user(userId=${currentUser.id})}" method="post"
 					th:object="${currentUser}">
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="username">Имя:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="username" style="background-color: #E7DDD4;">Имя:</span>
 							<input disabled class="form-control" type="text" th:field="*{name}" value="Иван">
 						</div>
 					</div>
-					<br>
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="surname">Фамилия:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="surname" style="background-color: #E7DDD4;">Фамилия:</span>
 							<input disabled class="form-control" type="text" th:field="*{surname}" value="Иванов">
 						</div>
 					</div>
-					<br>
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="patronymic">Отчество:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="patronymic" style="background-color: #E7DDD4;">Отчество:</span>
 							<input disabled class="form-control" type="text" th:field="*{patronymic}" value="Иванович">
 						</div>
 					</div>
-					<br>
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="email">Почта:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="email" style="background-color: #E7DDD4;">Почта:</span>
 							<input disabled class="form-control" type="text" th:field="*{email}" value="ivanov@example.com">
 						</div>
 					</div>
-					<br>
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="phone">Телефон:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="phone" style="background-color: #E7DDD4;">Телефон:</span>
 							<input disabled class="form-control" type="text" th:field="*{phone}" value="+7 912 345-67-89">
 						</div>
 					</div>
-					<br>
 					<div class="row">
-						<div class="col-4 ">
-							<span class="input-group-text" for="subscriptionStatus">Статус подписки:</span>
-						</div>
-						<div class="col-8 ">
+						<div class="input-group mb-3">
+							<span class="input-group-text" for="subscriptionStatus" style="background-color: #E7DDD4;">Статус
+								подписки:</span>
 							<input disabled class="form-control input-disabled" type="text" th:field="*{isActive}" value="Активна">
 						</div>
 					</div>
 					<div class="pt-4">
-						<button type="button" class="btn btn-primary">Оформить подписку</button>
-						<button id="editProfileButton" type="button" class="btn btn-primary">Редактировать профиль</button>
-						<input id="saveChangesButton" type="submit" class="btn btn-primary" style="display: none;"
+						<button type="button" class="btn btn-outline-light">Оформить подписку</button>
+						<button id="editProfileButton" type="button" class="btn btn-outline-light">Редактировать профиль</button>
+						<input id="saveChangesButton" type="submit" class="btn btn-outline-light" style="display: none;"
 							value="Сохранить" />
-						<a class="btn btn-primary" th:href="@{/personal-account/update-password}">Изменить пароль</a>
+						<a class="btn btn-outline-light" th:href="@{/personal-account/update-password}">Изменить пароль</a>
 					</div>
 				</form>
 			</div>
