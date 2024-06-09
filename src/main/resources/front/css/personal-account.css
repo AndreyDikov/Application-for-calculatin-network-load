@@ -1,5 +1,8 @@
 .form-container {
-    max-width: 600px;
+    max-width: 1000px;
+    border-radius: 45px;
+    padding: 30px;
+    background-color: #F6F6F6;
     /* background-color: #7B9464; */
 }
 
@@ -12,9 +15,7 @@
     margin-right: auto;
     margin-top: 150px;
     width: fit-content;
-    /* Задает ширину таблицы равной содержимому */
     max-width: 80%;
-    /* Максимальная ширина таблицы */
 }
 
 .center-text {
@@ -30,9 +31,7 @@
     margin-right: auto;
     margin-top: 150px;
     width: fit-content;
-    /* Задает ширину таблицы равной содержимому */
     max-width: 100%;
-    /* Максимальная ширина таблицы */
 }
 
 .mr {
@@ -41,4 +40,8 @@
 
 .mr-2 {
     margin-right: 25px;
+}
+
+.input-disabled {
+    pointer-events: none;
 }

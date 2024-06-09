@@ -7,14 +7,16 @@
   <link rel="stylesheet" href="../css/personal-account.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/custom-bootstrap.css">
 </head>
 
 <body class="castome-tema">
   <div th:replace="fragments/header :: header"></div>
-  <div class="content center-table">
+  <div class="content center-table form-container">
     <div class=" cmd mb-4">
       <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon3">Название секции</span>
+        <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Название секции</span>
         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -38,13 +40,14 @@
       </div>
 
       <div class="input-group mt-3">
-        <span class="input-group-text" id="basic-addon3">Произвольное ограничение</span>
+        <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Произвольное
+          ограничение</span>
         <input disabled type="text" class="form-control" id="custom-value-input"
           aria-describedby="basic-addon3 basic-addon4">
       </div>
     </div>
     <div class="mb-3">
-      <a href="consumer.html" class="btn btn-secondary  " tabindex="-1" role="button" aria-disabled="true">Добавить
+      <a href="consumer.html" class="btn btn-outline-light" tabindex="-1" role="button" aria-disabled="true">Добавить
         потребителя</a>
       <!-- <button type="button" class="btn btn-secondary">Добавить потребителя</button> -->
     </div>
@@ -63,13 +66,13 @@
           <tr>
             <td>3</td>
             <td>потребитель 1</td>
-            <td class="col-md-1"><button type="button" class="btn btn-secondary">Редактировать</button></td>
+            <td class="col-md-1"><button type="button" class="btn btn-outline-light">Редактировать</button></td>
           </tr>
         </tbody>
       </table>
       <div class="mb-3 d-flex justify-content-between">
         <div></div>
-        <button type="button" class="btn btn-secondary">Сохранить секцию</button>
+        <button type="button" class="btn btn-outline-light">Сохранить секцию</button>
       </div>
     </div>
   </div>
