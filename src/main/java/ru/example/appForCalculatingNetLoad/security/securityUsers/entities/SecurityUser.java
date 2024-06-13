@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Builder
-@ToString(exclude = "roles")
+@ToString(exclude = {"roles", "objects", "calculations"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

@@ -13,7 +13,7 @@
 
 <body class="castome-tema">
   <div th:replace="fragments/header :: header"></div>
-  <form th:action="@{/calculator/add-object}" th:object="${objectDto}" method="post">
+  <form th:action="@{/calculator/add-object}" th:object="${objectEntity}" method="post">
     <div class="content center-table form-container">
       <div class=" cmd mb-4">
         <div class="input-group mb-3">
