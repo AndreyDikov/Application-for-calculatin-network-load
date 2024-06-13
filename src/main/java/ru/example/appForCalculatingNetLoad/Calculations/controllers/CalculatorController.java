@@ -47,4 +47,9 @@ public class CalculatorController {
         calculatorService.setObjectSettings(objectDto);
         return "redirect:/calculator";
     }
+
+    @RequestMapping("/create-section/create-consumer")
+    public String getAddConsumerPage() {
+        return "consumer";
+    }
 }
