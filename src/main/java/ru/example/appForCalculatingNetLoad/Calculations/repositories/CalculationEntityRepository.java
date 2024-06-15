@@ -8,6 +8,6 @@ import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.Secur
 import java.util.List;
 
 @Repository
-public interface CalculationRepository extends JpaRepository<CalculationEntity, Long> {
+public interface CalculationEntityRepository extends JpaRepository<CalculationEntity, Long> {
     List<CalculationEntity> findAllByUser(SecurityUser securityUser);
 }
