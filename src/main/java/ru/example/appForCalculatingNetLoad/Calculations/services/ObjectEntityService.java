@@ -3,7 +3,7 @@ package ru.example.appForCalculatingNetLoad.Calculations.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.ObjectEntity;
-import ru.example.appForCalculatingNetLoad.Calculations.repositories.ObjectEntityRepository;
+import ru.example.appForCalculatingNetLoad.Calculations.repositories.ObjectRepository;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ObjectEntityService {
 
-    private final ObjectEntityRepository objectEntityRepository;
+    private final ObjectRepository objectRepository;
 
     public List<ObjectEntity> getAll() {
-        return objectEntityRepository.findAll();
+        return objectRepository.findAll();
     }
 
     public void saveObjectEntity(ObjectEntity objectEntity) {
-        objectEntityRepository.save(objectEntity);
+        objectRepository.save(objectEntity);
     }
 }

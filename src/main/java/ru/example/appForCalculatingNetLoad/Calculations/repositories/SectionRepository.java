@@ -6,7 +6,7 @@ import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.Secur
 
 import java.util.List;
 
-public interface SectionEntityRepository extends JpaRepository<SectionEntity, Long> {
+public interface SectionRepository extends JpaRepository<SectionEntity, Long> {
 
     List<SectionEntity> findByCalculation_IsCurrentAndCalculation_User(Boolean isCurrent, SecurityUser user);
 }
