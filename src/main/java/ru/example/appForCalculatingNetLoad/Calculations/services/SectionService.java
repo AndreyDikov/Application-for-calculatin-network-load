@@ -7,12 +7,19 @@ import ru.example.appForCalculatingNetLoad.Calculations.repositories.SectionRepo
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class SectionService {
 
     private final SectionRepository sectionRepository;
+
+    public SectionEntity getById(Long id) {
+        Optional<SectionEntity> sectionOptional = sectionRepository.findById(id);
+
+        return sectionOptional.orElseThrow(() -> new IllegalArgumentException("Секция с id " + id + " не найдена"));
+    }
 
     public List<SectionEntity> getByCurrentUserCalculation(SecurityUser user) {
         List<SectionEntity> currentUserSections = sectionRepository

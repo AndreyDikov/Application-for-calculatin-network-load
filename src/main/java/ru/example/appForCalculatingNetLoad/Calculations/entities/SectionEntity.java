@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "sections")
 public class SectionEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

@@ -53,8 +53,7 @@ public class CalculatorController {
     }
 
     @GetMapping("/create-section")
-    public String getAddSectionPage(@AuthenticationPrincipal SecurityUser securityUser,
-                                    Model model) {
+    public String getAddSectionPage(@AuthenticationPrincipal SecurityUser securityUser) {
         SectionEntity section = new SectionEntity();
         CalculationEntity currentUserCalculation
                 = calculatorService.getCurrentUserCalculation(securityUser);
@@ -66,10 +65,20 @@ public class CalculatorController {
         return "redirect:/calculator";
     }
 
+    @GetMapping("/{id}/edit")
+    public String getEditSectionPage(@PathVariable Long id,
+                                     Model model) {
+        SectionEntity section = sectionService.getById(id);
+        model.addAttribute("section", section);
+
+        return "/section";
+    }
+
     @PostMapping("/create-section")
     public String createSection(SectionEntity section) {
+        sectionService.saveSection(section);
 
-        return "section";
+        return "redirect:/calculator";
     }
 
     @PostMapping("/add-object")
