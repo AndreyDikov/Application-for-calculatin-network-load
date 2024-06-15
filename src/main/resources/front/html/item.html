@@ -17,27 +17,25 @@
     <div class="content center-table form-container">
       <div class=" cmd mb-4">
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Наименование</span>
+          <span class="input-group-text sc" id="basic-addon3" style="background-color: #E7DDD4;">Наименование</span>
           <input type="text" th:field="*{name}" class="form-control" id="basic-url"
             aria-describedby="basic-addon3 basic-addon4">
         </div>
         <div class="input-group mb-3">
-          <label class="input-group-text" style="background-color: #E7DDD4;">Объект</label>
+          <label class="input-group-text sc" style="background-color: #E7DDD4;">Объект</label>
           <select th:field="*{region}" class="form-select form-control" aria-label="Default select example">
-            <option th:each="currentRegion : ${regions}"
-                    th:value="${currentRegion}"
-                    th:text="${currentRegion}">
+            <option th:each="currentRegion : ${regions}" th:value="${currentRegion}" th:text="${currentRegion}">
             </option>
           </select>
         </div>
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Адрес</span>
+          <span class="input-group-text sc" id="basic-addon3" style="background-color: #E7DDD4;">Адрес</span>
           <input type="text" th:field="*{address}" class="form-control" id="basic-url"
             aria-describedby="basic-addon3 basic-addon4">
         </div>
 
         <div class="input-group mt-3">
-          <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Общая площадь</span>
+          <span class="input-group-text sc" id="basic-addon3" style="background-color: #E7DDD4;">Общая площадь</span>
           <input type="text" th:field="*{square}" class="form-control" id="basic-url"
             aria-describedby="basic-addon3 basic-addon4">
         </div>

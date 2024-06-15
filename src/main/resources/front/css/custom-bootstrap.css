@@ -158,3 +158,8 @@
 .form-select {
   --bs-form-select-focus-box-shadow: 0 0 0 5 var(--bs-red);
 }
+
+.sc {
+  background-color: #E7DDD4;
+  width: 150px;
+}

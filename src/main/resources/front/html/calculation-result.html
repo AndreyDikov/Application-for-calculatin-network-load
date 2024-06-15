@@ -19,8 +19,8 @@
         <div class="d-flex flex-column">
           <div class="d-flex justify-content-md-cente mb-2">
             <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Наименования
-                объекта</span>
+              <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>
+                Объект</span>
               <input class="form-control" disabled type="text" value="Соме найм">
             </div>
           </div>
@@ -32,11 +32,14 @@
           </div>
         </div>
         <div class="d-flex justify-content-md-cente mb-2">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Примечание</span>
-            <!-- Этот косяк поправлю  -->
-            <input class="form-control" disabled type="text"
-              value="Я хз какие-то коментарии, речи о великом о звездах и платежки за воду ">
+          <div class="card" style="width: 18rem; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+            <div class="card-header"
+              style="background-color: #E7DDD4; border-top-left-radius: 30px; border-top-right-radius: 30px;">
+              Примечание
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Я хз какие-то коментарии, речи о великом о звездах и платежки за воду </li>
+            </ul>
           </div>
         </div>
         <div class="d-flex flex-column">
@@ -44,63 +47,85 @@
             <button type="button" class="btn btn-outline-light">Редактировать</button>
           </div>
         </div>
+
+      </div>
+
+    </div>
+    <div>
+      <table class="table table-bordered center-text scaled-table">
+        <thead>
+          <tr>
+            <th rowspan="3">№ п/п</th>
+            <th rowspan="3">Наименование потребителя</th>
+            <th rowspan="3">Кол-во</th>
+            <th rowspan="1">Установленная мощность на еденицу</th>
+            <th rowspan="1">Установленная мощность</th>
+            <th rowspan="1" colspan="3">Расчетные коэффициенты</th>
+            <th rowspan="1" colspan="2">Коэффициент реактивной мощности</th>
+            <th rowspan="2">Расчетная мощность</th>
+            <th rowspan="2">Реактивная мощность</th>
+            <th rowspan="2">Полная мощность</th>
+            <th rowspan="2">Максимальный расчетный ток</th>
+          </tr>
+          <tr>
+            <th rowspan="2">Ру.ед., кВт</th>
+            <th rowspan="2">Ру.ед., кВт</th>
+            <th rowspan="1">Поправоченый (региональный коэффициент)</th>
+            <th rowspan="1">Коэффициент спроса</th>
+            <th rowspan="1">Коэффициент несовпадения максимумов</th>
+            <th colspan="1" rowspan="2">Sp</th>
+            <th colspan="1" rowspan="2">lp</th>
+          </tr>
+          <tr>
+            <th colspan="1">Кп.к.</th>
+            <th colspan="1">Кс</th>
+            <th colspan="1">Кн.м.</th>
+
+            <th colspan="1">Рр=Ру*Кс, кВт</th>
+            <th rowspan="1">Cosj</th>
+            <th rowspan="1">tgj</th>
+            <th colspan="1">Qp=Pp*tgq</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+            <td>3</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата создания</span>
+          <input class="form-control" disabled type="text" value="6/6/6/6">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата
+            редактирования</span>
+          <input class="form-control" disabled type="text" value="6/6/6/6">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Расчетная мощность по
+            вводам</span>
+          <input class="form-control" disabled type="text" value="С6/6/6/6">
+        </div>
       </div>
     </div>
-    <table class="table table-bordered center-text">
-      <thead>
-        <tr>
-          <th rowspan="3">№ п/п</th>
-          <th rowspan="3">Наименование потребителя</th>
-          <th rowspan="3">Кол-во</th>
-          <th rowspan="1">Установленная мощность на еденицу</th>
-          <th rowspan="1">Установленная мощность</th>
-          <th rowspan="1" colspan="3">Расчетные коэффициенты</th>
-          <th rowspan="1" colspan="2">Коэффициент реактивной мощности</th>
-          <th rowspan="2">Расчетная мощность</th>
-          <th rowspan="2">Реактивная мощность</th>
-          <th rowspan="2">Полная мощность</th>
-          <th rowspan="2">Максимальный расчетный ток</th>
-        </tr>
-        <tr>
-          <th rowspan="2">Ру.ед., кВт</th>
-          <th rowspan="2">Ру.ед., кВт</th>
-          <th rowspan="1">Поправоченый (региональный коэффициент)</th>
-          <th rowspan="1">Коэффициент спроса</th>
-          <th rowspan="1">Коэффициент несовпадения максимумов</th>
-          <th colspan="1" rowspan="2">Sp</th>
-          <th colspan="1" rowspan="2">lp</th>
-        </tr>
-        <tr>
-          <th colspan="1">Кп.к.</th>
-          <th colspan="1">Кс</th>
-          <th colspan="1">Кн.м.</th>
-
-          <th colspan="1">Рр=Ру*Кс, кВт</th>
-          <th rowspan="1">Cosj</th>
-          <th rowspan="1">tgj</th>
-          <th colspan="1">Qp=Pp*tgq</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-        </tr>
-
-      </tbody>
-    </table>
   </div>
   <script>
     $(document).ready(function () {

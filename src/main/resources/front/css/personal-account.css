@@ -3,7 +3,6 @@
     border-radius: 45px;
     padding: 30px;
     background-color: #F6F6F6;
-    /* background-color: #7B9464; */
 }
 
 .castome-tema {
@@ -44,4 +43,9 @@
 
 .input-disabled {
     pointer-events: none;
+}
+
+.scaled-table {
+    transform: scale(0.83);
+    transform-origin: left;
 }

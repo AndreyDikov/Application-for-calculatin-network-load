@@ -7,11 +7,6 @@ body {
     margin: 0;
 }
 
-/* .logo {
-     width: 150px;
-     height: auto;
- } */
-
 .form-container-cm {
     width: 250px;
     margin: 0 auto;
@@ -61,11 +56,9 @@ body {
     margin-top: 10px;
     color: #7B7464;
     text-decoration: none;
-    /* font-weight: bold; */
 }
 
 .bold-link {
     font-weight: bold;
     margin-left: 15px;
-    /* Жирный текст для ссылок с классом bold-link */
 }
