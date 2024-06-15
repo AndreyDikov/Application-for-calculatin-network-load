@@ -5,3 +5,6 @@ values
 
 insert into user_role (user_id, roles)
 values (1, 'USER');
+
+insert into calculations (is_current, object_id, user_id, customer, note)
+values (true, null, 1, null, null);
