@@ -13,7 +13,7 @@
 
 <body class="castome-tema">
   <div th:replace="fragments/header :: header"></div>
-  <form th:action="@{/calculator/add-object}" th:object="${objectDto}" method="post">
+  <form th:action="@{/calculator/add-object}" th:object="${objectEntity}" method="post">
     <div class="content center-table form-container">
       <div class=" cmd mb-4">
         <div class="input-group mb-3">
@@ -24,7 +24,9 @@
         <div class="input-group mb-3">
           <label class="input-group-text" style="background-color: #E7DDD4;">Объект</label>
           <select th:field="*{region}" class="form-select form-control" aria-label="Default select example">
-            <option th:each="currentRegion : ${regions}" th:value="${currentRegion}" th:text="${currentRegion}">
+            <option th:each="currentRegion : ${regions}"
+                    th:value="${currentRegion}"
+                    th:text="${currentRegion}">
             </option>
           </select>
         </div>

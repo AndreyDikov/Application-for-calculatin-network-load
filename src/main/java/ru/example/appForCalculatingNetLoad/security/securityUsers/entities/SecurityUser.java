@@ -5,16 +5,19 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.ObjectEntity;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.enums.UserRole;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @Builder
-@ToString(exclude = "roles")
+@ToString(exclude = {"roles", "objects", "calculations"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -31,6 +34,12 @@ public class SecurityUser implements UserDetails {
     private String password;
     private String phone;
     private Boolean isActive;
+
+    @OneToMany(mappedBy = "user")
+    private List<ObjectEntity> objects;
+
+    @OneToMany(mappedBy = "user")
+    private List<CalculationEntity> calculations;
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
