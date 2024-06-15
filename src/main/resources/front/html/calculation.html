@@ -59,8 +59,7 @@
     <tr>
       <th>№</th>
       <th>Название секции</th>
-      <th>Действие</th>
-      <th>Удалить</th>
+      <th colspan="2">Действие</th>
     </tr>
     </thead>
     <tbody>
@@ -71,10 +70,9 @@
         <a th:href="@{/calculator/{id}/edit(id=${section.id})}"
                 type="button" class="btn btn-outline-light">Редактировать</a>
       </td>
-      <td>
-        <a th:href="@{/calculator/{id}/delete(id=${section.id})}" class="btn btn-danger">
-          Удалить
-        </a>
+      <td class="col-md-1">
+        <a th:href="@{/calculator/{id}/delete(id=${section.id})}"
+           type="button" class="btn btn-outline-light">Удалить</a>
       </td>
     </tr>
     </tbody>
