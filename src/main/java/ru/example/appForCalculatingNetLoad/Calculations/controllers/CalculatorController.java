@@ -7,9 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.ObjectEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.SectionEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.services.CalculatorService;
 import ru.example.appForCalculatingNetLoad.Calculations.services.ObjectEntityService;
+import ru.example.appForCalculatingNetLoad.Calculations.services.SectionService;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.ObjectForCalculation.Regions;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
@@ -21,13 +24,18 @@ import java.util.List;
 @RequestMapping("/calculator")
 public class CalculatorController {
 
+    private final SectionService sectionService;
     private final CalculatorService calculatorService;
     private final ObjectEntityService objectEntityService;
 
     @GetMapping
     public String getCalculationPage(@AuthenticationPrincipal SecurityUser securityUser, Model model) {
         model.addAttribute("allObjects", objectEntityService.getAll());
-        model.addAttribute("currentCalculation", calculatorService.getCurrentCalculation(securityUser));
+        model.addAttribute("currentCalculation",
+                calculatorService.getCurrentCalculation(securityUser));
+        model.addAttribute("currentUserSections",
+                sectionService.getByCurrentUserCalculation(securityUser));
+
         return "calculation";
     }
 
@@ -43,8 +51,23 @@ public class CalculatorController {
         return "item";
     }
 
-    @RequestMapping("/create-section")
-    public String getAddSectionPage() {
+    @GetMapping("/create-section")
+    public String getAddSectionPage(@AuthenticationPrincipal SecurityUser securityUser,
+                                    Model model) {
+        SectionEntity section = new SectionEntity();
+        CalculationEntity currentUserCalculation
+                = calculatorService.getCurrentUserCalculation(securityUser);
+        int numberSections = currentUserCalculation.getSections().size();
+        section.setName("Секция " + (numberSections + 1));
+        section.setCalculation(currentUserCalculation);
+        sectionService.saveSection(section);
+
+        return "redirect:/calculator";
+    }
+
+    @PostMapping("/create-section")
+    public String createSection(SectionEntity section) {
+
         return "section";
     }
 
