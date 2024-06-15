@@ -2,8 +2,10 @@ package ru.example.appForCalculatingNetLoad.Calculations.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.example.appForCalculatingNetLoad.Calculations.dto.ObjectDto;
-import ru.example.appForCalculatingNetLoad.Calculations.repositories.CalculatorFastMemoryRepository;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.repositories.CalculationRepository;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
+import ru.example.appForCalculatingNetLoad.security.securityUsers.repositories.SecurityUserRepository;
 
 import java.util.List;
 
@@ -11,13 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 public class CalculatorService {
 
-    private final CalculatorFastMemoryRepository fastMemoryRepository;
+    private final CalculationRepository calculationRepository;
 
-    public void setObjectSettings(ObjectDto objectDto) {
-        fastMemoryRepository.addObjectDto(objectDto);
-    }
-
-    public List<ObjectDto> getAllObjects() {
-        return fastMemoryRepository.getAllObjects();
+    public CalculationEntity getCurrentCalculation(SecurityUser securityUser) {
+        List<CalculationEntity> calculations = calculationRepository.findAllByUser(securityUser);
+        for (CalculationEntity calculation : calculations) {
+            if (calculation.getIsCurrent()) {
+                return calculation;
+            }
+        }
+        return null;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.example.appForCalculatingNetLoad.Calculations.dto.ObjectDto;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.ObjectEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.services.CalculatorService;
 import ru.example.appForCalculatingNetLoad.Calculations.services.ObjectEntityService;
@@ -26,8 +25,9 @@ public class CalculatorController {
     private final ObjectEntityService objectEntityService;
 
     @GetMapping
-    public String getCalculationPage(Model model) {
+    public String getCalculationPage(@AuthenticationPrincipal SecurityUser securityUser, Model model) {
         model.addAttribute("allObjects", objectEntityService.getAll());
+        model.addAttribute("currentCalculation", calculatorService.getCurrentCalculation(securityUser));
         return "calculation";
     }
 

@@ -7,6 +7,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.repositories.CalculationRepository;
 import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationRequest;
 import ru.example.appForCalculatingNetLoad.security.auth.dto.AuthenticationResponse;
 import ru.example.appForCalculatingNetLoad.security.auth.dto.RegisterRequest;
@@ -24,6 +26,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final CalculationRepository calculationRepository;
 
     /**
      * Регистрирует нового пользователя на основе данных из запроса.
@@ -44,7 +47,12 @@ public class AuthenticationService {
                 .roles(Set.of(UserRole.USER))
                 .build();
 
-        securityUserService.saveUser(securityUser);
+        SecurityUser savedUser = securityUserService.saveUser(securityUser);
+        CalculationEntity currentCalculation = CalculationEntity.builder()
+                .isCurrent(true)
+                .user(savedUser)
+                .build();
+        calculationRepository.save(currentCalculation);
     }
 
     /**
