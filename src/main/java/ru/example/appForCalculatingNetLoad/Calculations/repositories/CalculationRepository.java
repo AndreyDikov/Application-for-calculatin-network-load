@@ -6,8 +6,12 @@ import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEnti
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CalculationRepository extends JpaRepository<CalculationEntity, Long> {
+
     List<CalculationEntity> findAllByUser(SecurityUser securityUser);
+
+    Optional<CalculationEntity> findByUserAndIsCurrent(SecurityUser securityUser, Boolean isCurrent);
 }

@@ -20,4 +20,12 @@ public class SectionService {
 
         return currentUserSections;
     }
+
+    Long getNumberSections() {
+        return sectionRepository.getNumberSections();
+    }
+
+    public SectionEntity saveSection(SectionEntity section) {
+        return sectionRepository.save(section);
+    }
 }

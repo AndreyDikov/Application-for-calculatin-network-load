@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.repositories.CalculationRepository;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
-import ru.example.appForCalculatingNetLoad.security.securityUsers.repositories.SecurityUserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,5 +23,12 @@ public class CalculatorService {
             }
         }
         return null;
+    }
+
+    public CalculationEntity getCurrentUserCalculation(SecurityUser securityUser) {
+        Optional<CalculationEntity> currentUserCalculation
+                = calculationRepository.findByUserAndIsCurrent(securityUser, true);
+
+        return currentUserCalculation.orElseThrow(() -> new RuntimeException("No current calculation"));
     }
 }
