@@ -28,4 +28,8 @@ public class SectionService {
     public SectionEntity saveSection(SectionEntity section) {
         return sectionRepository.save(section);
     }
+
+    public void deleteSection(SectionEntity section) {
+        sectionRepository.delete(section);
+    }
 }

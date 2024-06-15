@@ -59,16 +59,24 @@
     <tr>
       <th>№</th>
       <th>Название секции</th>
-      <th></th>
+      <th>Действие</th>
+      <th>Удалить</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="section,iter : ${currentUserSections}">
       <td th:text="${iter.index + 1}">3</td>
       <td th:text="${section.name}">Пример 98436463843284 секции</td>
-          <td class="col-md-1"><button type="button" class="btn btn-outline-light">Редактировать</button></td>
-        </tr>
-      </tbody>
+      <td class="col-md-1">
+        <button type="button" class="btn btn-outline-light">Редактировать</button>
+      </td>
+      <td>
+        <a th:href="@{/calculator/{id}/delete(id=${section.id})}" class="btn btn-danger">
+          Удалить
+        </a>
+      </td>
+    </tr>
+    </tbody>
   </table>
 </div>
 <script>

@@ -5,6 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
@@ -82,5 +83,12 @@ public class CalculatorController {
     @RequestMapping("/create-section/create-consumer")
     public String getAddConsumerPage() {
         return "consumer";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteSection(@PathVariable Long id, SectionEntity section) {
+        sectionService.deleteSection(section);
+
+        return "redirect:/calculator";
     }
 }
