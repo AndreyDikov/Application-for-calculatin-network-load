@@ -38,7 +38,22 @@ public class CalculatorController {
         model.addAttribute("currentUserSections",
                 sectionService.getByCurrentUserCalculation(securityUser));
 
-        return "calculation";
+        return "/calculation/calculation-form";
+    }
+
+    @GetMapping("/{calculationId}")
+    public String getCalculationEditForm(@PathVariable("calculationId") Long calculationId,
+                                         @AuthenticationPrincipal SecurityUser securityUser,
+                                         Model model) {
+        CalculationEntity calculationById
+                = calculatorService.getCalculationById(calculationId);
+        model.addAttribute("currentCalculation", calculationById);
+        model.addAttribute("allObjects",
+                objectEntityService.getAllByUser(securityUser));
+        model.addAttribute("currentUserSections",
+                sectionService.getSectionsByUserAndCalculation(securityUser, calculationById));
+
+        return "/calculation/calculation-form";
     }
 
     @PostMapping("/calculate")

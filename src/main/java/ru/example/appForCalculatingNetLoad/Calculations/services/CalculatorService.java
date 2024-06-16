@@ -62,4 +62,8 @@ public class CalculatorService {
 
         return saveCalculation(calculation);
     }
+
+    public List<CalculationEntity> getALlCalculationsByUser(SecurityUser securityUser) {
+        return calculationRepository.findAllByUser(securityUser);
+    }
 }

@@ -2,6 +2,7 @@ package ru.example.appForCalculatingNetLoad.Calculations.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.SectionEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.repositories.SectionRepository;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
@@ -26,6 +27,11 @@ public class SectionService {
                 .findByCalculation_IsCurrentAndCalculation_User(true, user);
 
         return currentUserSections;
+    }
+
+    public List<SectionEntity> getSectionsByUserAndCalculation(SecurityUser user,
+                                                               CalculationEntity calculation) {
+        return sectionRepository.findByCalculationAndCalculation_User(calculation, user);
     }
 
     Long getNumberSections() {
