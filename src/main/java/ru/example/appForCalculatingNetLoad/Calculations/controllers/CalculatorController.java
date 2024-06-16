@@ -31,13 +31,22 @@ public class CalculatorController {
 
     @GetMapping
     public String getCalculationPage(@AuthenticationPrincipal SecurityUser securityUser, Model model) {
-        model.addAttribute("allObjects", objectEntityService.getAll());
+        model.addAttribute("allObjects",
+                objectEntityService.getAllByUser(securityUser));
         model.addAttribute("currentCalculation",
                 calculatorService.getCurrentCalculation(securityUser));
         model.addAttribute("currentUserSections",
                 sectionService.getByCurrentUserCalculation(securityUser));
 
         return "calculation";
+    }
+
+    @PostMapping("/calculate")
+    public String calculate(@AuthenticationPrincipal SecurityUser securityUser,
+                            CalculationEntity calculation) {
+        calculatorService.performCalculation(securityUser, calculation);
+
+        return "redirect:/calculator";
     }
 
     @RequestMapping("/object-settings")

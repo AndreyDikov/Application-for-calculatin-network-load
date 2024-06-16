@@ -15,45 +15,48 @@
 <body class="castome-tema">
 <div th:replace="fragments/header :: header"></div>
 <div class="content center-table form-container">
-  <div class="actions px-4 mb-4">
-    <div class="d-flex justify-content-between">
-      <div class="d-flex flex-column">
-        <div class="d-flex justify-content-md-cente mb-2">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;">Примечание</span>
-            <input class="form-control" type="text">
+  <form th:object="${currentCalculation}" method="post" th:action="@{/calculator/calculate}">
+    <input type="hidden" th:field="*{id}">
+    <div class="actions px-4 mb-4">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-md-cente mb-2">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;">Примечание</span>
+              <input th:field="*{note}" class="form-control" type="text">
+            </div>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <a th:href="@{/calculator/create-section}" class="btn btn-outline-light" tabindex="-1" role="button"
+               aria-disabled="true">Добавить секцию</a>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <a th:href="@{/calculator/object-settings}" class="btn btn-outline-light" tabindex="-1" role="button"
+               aria-disabled="true">Добавить объект</a>
           </div>
         </div>
-        <div class="d-flex align-items-center mt-2">
-          <a th:href="@{/calculator/create-section}" class="btn btn-outline-light" tabindex="-1" role="button"
-             aria-disabled="true">Добавить секцию</a>
-        </div>
-        <div class="d-flex align-items-center mt-2">
-          <a th:href="@{/calculator/object-settings}" class="btn btn-outline-light" tabindex="-1" role="button"
-             aria-disabled="true">Добавить объект</a>
-        </div>
-      </div>
-      <div class="d-flex flex-column">
-        <div class="d-flex align-items-start w-100 mb-2">
-          <div class="input-group mb-3">
-            <label class="input-group-text" style="background-color: #E7DDD4;">Заказчик</label>
-            <input class="form-control" type="text">
+        <div class="d-flex flex-column">
+          <div class="d-flex align-items-start w-100 mb-2">
+            <div class="input-group mb-3">
+              <label class="input-group-text" style="background-color: #E7DDD4;">Заказчик</label>
+              <input th:field="*{customer}" class="form-control" type="text">
+            </div>
           </div>
-        </div>
-        <div class="d-flex align-items-start w-100">
-          <div class="input-group mb-3">
-            <label class="input-group-text" style="background-color: #E7DDD4;">Объект</label>
-            <select class="form-select form-control" aria-label="Выбор объекта">
-              <option th:each="object : ${allObjects}" th:value="${object.name}" th:text="${object.name}"></option>
-            </select>
+          <div class="d-flex align-items-start w-100">
+            <div class="input-group mb-3">
+              <label class="input-group-text" style="background-color: #E7DDD4;">Объект</label>
+              <select th:field="*{object}" class="form-select form-control" aria-label="Выбор объекта">
+                <option th:each="object : ${allObjects}" th:value="${object.id}" th:text="${object.name}"></option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="d-flex align-items-center mt-2 col align-self-end">
-          <button type="button" class="btn btn-outline-light">Выполнить расчет</button>
+          <div class="d-flex align-items-center mt-2 col align-self-end">
+            <input type="submit" class="btn btn-outline-light" th:value="'Выполнить расчет'"/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
   <table class="table table-bordered center-text">
     <thead>
     <tr>
@@ -68,7 +71,7 @@
       <td th:text="${section.name}">Пример 98436463843284 секции</td>
       <td class="col-md-1">
         <a th:href="@{/calculator/{id}/edit(id=${section.id})}"
-                type="button" class="btn btn-outline-light">Редактировать</a>
+           type="button" class="btn btn-outline-light">Редактировать</a>
       </td>
       <td class="col-md-1">
         <a th:href="@{/calculator/{id}/delete(id=${section.id})}"
