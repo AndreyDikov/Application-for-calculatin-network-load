@@ -89,11 +89,6 @@ public class CalculatorController {
         return "redirect:/calculator";
     }
 
-    @RequestMapping("/create-section/create-consumer")
-    public String getAddConsumerPage() {
-        return "consumer";
-    }
-
     @GetMapping("/{id}/delete")
     public String deleteSection(@PathVariable Long id, SectionEntity section) {
         sectionService.deleteSection(section);

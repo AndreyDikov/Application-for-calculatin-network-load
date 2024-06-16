@@ -53,7 +53,7 @@
     </div>
 
     <div class="mb-3">
-      <a th:href="@{/calculator/create-section/create-consumer}" class="btn btn-outline-light" tabindex="-1"
+      <a th:href="@{/calculator/consumers/{sectionId}/create(sectionId=${section.id})}" class="btn btn-outline-light" tabindex="-1"
          role="button"
          aria-disabled="true">Добавить
         потребителя</a>
@@ -65,17 +65,18 @@
         <tr>
           <th>№</th>
           <th>Название потребителя</th>
-          <th></th>
+          <th>Действие</th>
         </tr>
         </thead>
         <tbody>
         <!-- Пример строки таблицы -->
         <!-- сюда рендер элементов -->
-        <tr>
-          <td>3</td>
-          <td>потребитель 1</td>
+        <tr th:each="consumer : ${section?.getConsumers()}">
+          <td th:text="${consumer.id}">3</td>
+          <td th:text="${consumer.name}">потребитель 1</td>
           <td class="col-md-1">
-            <button type="button" class="btn btn-outline-light">Редактировать</button>
+            <a th:href="@{/calculator/consumers/{id}/edit(id=${consumer.id})}"
+               type="button" class="btn btn-outline-light">Редактировать</a>
           </td>
         </tr>
         </tbody>
