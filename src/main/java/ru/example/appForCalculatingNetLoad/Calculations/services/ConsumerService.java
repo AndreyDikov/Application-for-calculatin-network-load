@@ -19,4 +19,8 @@ public class ConsumerService {
     public ConsumerEntity save(ConsumerEntity consumer) {
         return consumerRepository.save(consumer);
     }
+
+    public void delete(ConsumerEntity consumer) {
+        consumerRepository.delete(consumer);
+    }
 }

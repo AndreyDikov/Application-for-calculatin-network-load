@@ -24,25 +24,25 @@
         <input th:field="*{name}"
                type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"/>
       </div>
-<!--      <div  class="btn-group" role="group" aria-label="Basic radio toggle button group">-->
-<!--        <input th:field="*{limitValue}" th:value="150" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex150">-->
-<!--        <label class="form-check-label mr-2" for="flex150">150</label>-->
+      <!--      <div  class="btn-group" role="group" aria-label="Basic radio toggle button group">-->
+      <!--        <input th:field="*{limitValue}" th:value="150" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex150">-->
+      <!--        <label class="form-check-label mr-2" for="flex150">150</label>-->
 
-<!--        <input th:field="*{limitValue}" th:value="200" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex200">-->
-<!--        <label class="form-check-label mr-2" for="flex200">200</label>-->
+      <!--        <input th:field="*{limitValue}" th:value="200" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex200">-->
+      <!--        <label class="form-check-label mr-2" for="flex200">200</label>-->
 
-<!--        <input th:field="*{limitValue}" th:value="250" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex250">-->
-<!--        <label class="form-check-label mr-2" for="flex250">250</label>-->
+      <!--        <input th:field="*{limitValue}" th:value="250" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex250">-->
+      <!--        <label class="form-check-label mr-2" for="flex250">250</label>-->
 
-<!--        <input th:field="*{limitValue}" th:value="300" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex300">-->
-<!--        <label class="form-check-label mr-2" for="flex300">300</label>-->
+      <!--        <input th:field="*{limitValue}" th:value="300" class="form-check-input mr" type="radio" name="flexRadioDefault" id="flex300">-->
+      <!--        <label class="form-check-label mr-2" for="flex300">300</label>-->
 
-<!--        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexNoRestrictions">-->
-<!--        <label th:field="*{limitValue}" th:value="0" class="form-check-label mr-2" for="flexNoRestrictions">Без ограничений</label>-->
+      <!--        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexNoRestrictions">-->
+      <!--        <label th:field="*{limitValue}" th:value="0" class="form-check-label mr-2" for="flexNoRestrictions">Без ограничений</label>-->
 
-<!--        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRestrictions">-->
-<!--        <label class="form-check-label mr-2" for="flexRestrictions">Произвольное значение</label>-->
-<!--      </div>-->
+      <!--        <input class="form-check-input mr" type="radio" name="flexRadioDefault" id="flexRestrictions">-->
+      <!--        <label class="form-check-label mr-2" for="flexRestrictions">Произвольное значение</label>-->
+      <!--      </div>-->
 
       <div class="input-group mt-3">
         <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Предельное
@@ -53,7 +53,8 @@
     </div>
 
     <div class="mb-3">
-      <a th:href="@{/calculator/consumers/{sectionId}/create(sectionId=${section.id})}" class="btn btn-outline-light" tabindex="-1"
+      <a th:href="@{/calculator/consumers/{sectionId}/create(sectionId=${section.id})}" class="btn btn-outline-light"
+         tabindex="-1"
          role="button"
          aria-disabled="true">Добавить
         потребителя</a>
@@ -71,12 +72,16 @@
         <tbody>
         <!-- Пример строки таблицы -->
         <!-- сюда рендер элементов -->
-        <tr th:each="consumer : ${section?.getConsumers()}">
-          <td th:text="${consumer.id}">3</td>
+        <tr th:each="consumer, iter : ${section?.getConsumers()}">
+          <td th:text="${iter.index + 1}">3</td>
           <td th:text="${consumer.name}">потребитель 1</td>
           <td class="col-md-1">
-            <a th:href="@{/calculator/consumers/{id}/edit(id=${consumer.id})}"
+            <a th:href="@{/calculator/consumers/{sectionId}/edit/{consumerId}(sectionId=${section.id},consumerId=${consumer.id})}"
                type="button" class="btn btn-outline-light">Редактировать</a>
+          </td>
+          <td class="col-md-1">
+            <a th:href="@{/calculator/consumers/{id}/delete(id=${section.id})}"
+               type="button" class="btn btn-outline-light">Удалить</a>
           </td>
         </tr>
         </tbody>

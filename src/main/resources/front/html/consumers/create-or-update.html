@@ -14,7 +14,7 @@
 
 <body class="castome-tema">
 <div th:replace="fragments/header :: header"></div>
-<form th:action="@{/calculator/consumers/{sectionId}/create(sectionId=${sectionId})}"
+<form th:action="@{/calculator/consumers/{sectionId}/merge(sectionId=${sectionId})}"
       th:method="post" th:object="${consumer}">
   <label><input type="hidden" th:field="*{id}"></label>
   <label><input type="hidden" th:field="*{section}"></label>
@@ -30,23 +30,20 @@
         <label class="input-group-text" style="background-color: #E7DDD4;">Наименование потребителя</label>
         <select class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" name="gender"
                 th:field="*{type}">
-          <option th:value="${consumer.type}" th:if="${consumer.type != null}"
-                  th:text="${consumer.type.getName()}"></option>
-          <option value="">Выберите наименование</option>
           <option th:each="cType : ${T(ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Consumers).values()}"
-                  th:value="${cType}" th:if="${consumer.type == null
-            || (consumer.type != null
-            && consumer.type.getName() != cType.getName())}"
+                  th:value="${cType}"
                   th:text="${cType.getName()}"></option>
         </select>
       </div>
       <div class="input-group mt-3">
         <span class="input-group-text" id="basic-addon3" style="background-color: #E7DDD4;">Количество</span>
-        <input th:field="*{number}" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+        <input th:field="*{number}" type="number" min="1"
+               class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
       </div>
     </div>
     <div class="container text-center mb-3">
-      <input type="submit" class="btn btn-outline-light" th:value="'Добавить потребителя'"/>
+      <input type="submit" class="btn btn-outline-light"
+             th:value="${consumer.id} != null ? 'Сохранить потребителя' : 'Добавить потребителя'"/>
     </div>
   </div>
 </form>

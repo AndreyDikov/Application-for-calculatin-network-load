@@ -22,7 +22,8 @@ public class ConsumerEntity {
     @Enumerated(EnumType.STRING)
     Consumers type;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "section_id")
     SectionEntity section;
 }

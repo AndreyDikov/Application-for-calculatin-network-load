@@ -90,8 +90,9 @@ public class CalculatorController {
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteSection(@PathVariable Long id, SectionEntity section) {
-        sectionService.deleteSection(section);
+    public String deleteSection(@PathVariable Long id) {
+        SectionEntity sectionToDelete = sectionService.getById(id);
+        sectionService.deleteSection(sectionToDelete);
 
         return "redirect:/calculator";
     }

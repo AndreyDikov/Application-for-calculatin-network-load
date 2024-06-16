@@ -22,10 +22,12 @@ public class SectionEntity {
     String name;
     Double limitValue;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "calculation_id")
     CalculationEntity calculation;
 
-    @OneToMany(mappedBy = "section")
+    @OneToMany(mappedBy = "section",
+    cascade = CascadeType.ALL)
     List<ConsumerEntity> consumers;
 }
