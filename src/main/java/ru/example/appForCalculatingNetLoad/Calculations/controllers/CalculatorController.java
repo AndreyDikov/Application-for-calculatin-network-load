@@ -31,6 +31,7 @@ public class CalculatorController {
 
     @GetMapping
     public String getCalculationPage(@AuthenticationPrincipal SecurityUser securityUser, Model model) {
+        model.addAttribute("alreadyExist", false);
         model.addAttribute("allObjects",
                 objectEntityService.getAllByUser(securityUser));
         model.addAttribute("currentCalculation",
@@ -47,6 +48,7 @@ public class CalculatorController {
                                          Model model) {
         CalculationEntity calculationById
                 = calculatorService.getCalculationById(calculationId);
+        model.addAttribute("alreadyExist", !calculationById.getIsCurrent());
         model.addAttribute("currentCalculation", calculationById);
         model.addAttribute("allObjects",
                 objectEntityService.getAllByUser(securityUser));
@@ -56,16 +58,21 @@ public class CalculatorController {
         return "/calculation/calculation-form";
     }
 
-    @PostMapping("/calculate")
-    public String calculate(@AuthenticationPrincipal SecurityUser securityUser,
+    @PostMapping("/calculate/{alreadyExist}")
+    public String calculate(@PathVariable(name = "alreadyExist", required = false) Boolean alreadyExist,
+                            @AuthenticationPrincipal SecurityUser securityUser,
                             CalculationEntity calculation) {
-        calculatorService.performCalculation(securityUser, calculation);
+        calculatorService.performCalculation(securityUser, calculation, alreadyExist);
 
+        if (alreadyExist) {
+            return "redirect:/calculator/" + calculation.getId();
+        }
         return "redirect:/calculator";
     }
 
-    @RequestMapping("/object-settings")
-    public String getObjectSettingsPage(Model model) {
+    @GetMapping("/object-settings/{calculationId}")
+    public String getObjectSettingsPage(@PathVariable(name = "calculationId", required = false)
+                                        String calculationId, Model model) {
         ObjectEntity objectEntity = new ObjectEntity();
         model.addAttribute("objectEntity", objectEntity);
         List<String> regions = new ArrayList<>();
@@ -73,20 +80,26 @@ public class CalculatorController {
             regions.addAll(region.getNames());
         }
         model.addAttribute("regions", regions);
+        model.addAttribute("calculationId", calculationId);
         return "item";
     }
 
-    @GetMapping("/create-section")
-    public String getAddSectionPage(@AuthenticationPrincipal SecurityUser securityUser) {
+    @GetMapping("/create-section/{calculationId}")
+    public String getAddSectionPage(@PathVariable(name = "calculationId", required = false) Long calculationId,
+                                    @AuthenticationPrincipal SecurityUser securityUser) {
         SectionEntity section = new SectionEntity();
         CalculationEntity currentUserCalculation
-                = calculatorService.getCurrentUserCalculation(securityUser);
+                = calculationId != null
+                ? calculatorService.getCalculationById(calculationId)
+                : calculatorService.getCurrentUserCalculation(securityUser);
         int numberSections = currentUserCalculation.getSections().size();
         section.setName("Секция " + (numberSections + 1));
         section.setCalculation(currentUserCalculation);
         sectionService.saveSection(section);
 
-        return "redirect:/calculator";
+        return calculationId == null
+                ? "redirect:/calculator"
+                : "redirect:/calculator/" + calculationId;
     }
 
     @GetMapping("/{id}/edit")
@@ -98,25 +111,32 @@ public class CalculatorController {
         return "/section";
     }
 
-    @PostMapping("/create-section")
-    public String createSection(SectionEntity section) {
+    @PostMapping("/create-section/{calculationId}")
+    public String createSection(@PathVariable("calculationId") Long calculationId,
+                                SectionEntity section) {
         sectionService.saveSection(section);
 
-        return "redirect:/calculator";
+        return "redirect:/calculator/" + calculationId;
     }
 
-    @PostMapping("/add-object")
-    public String addObjectSettings(@AuthenticationPrincipal SecurityUser securityUser,
+    @PostMapping("/add-object/{calculationId}")
+    public String addObjectSettings(@PathVariable("calculationId") Long calculationId,
+                                    @AuthenticationPrincipal SecurityUser securityUser,
                                     ObjectEntity objectEntity) {
         objectEntity.setUser(securityUser);
         objectEntityService.saveObjectEntity(objectEntity);
-        return "redirect:/calculator";
+        return "redirect:/calculator/" + calculationId;
     }
 
-    @GetMapping("/{id}/delete")
-    public String deleteSection(@PathVariable Long id) {
+    @GetMapping("/{id}/delete/{calculationId}")
+    public String deleteSection(@PathVariable Long id,
+                                @PathVariable Long calculationId) {
         SectionEntity sectionToDelete = sectionService.getById(id);
         sectionService.deleteSection(sectionToDelete);
+
+        if (calculationId != null) {
+            return "redirect:/calculator/" + calculationId;
+        }
 
         return "redirect:/calculator";
     }

@@ -15,7 +15,8 @@
 <body class="castome-tema">
 <div th:replace="fragments/header :: header"></div>
 <div class="content center-table form-container">
-  <form th:object="${currentCalculation}" method="post" th:action="@{/calculator/calculate}">
+  <form th:object="${currentCalculation}" method="post"
+        th:action="@{/calculator/calculate/{alreadyExist}(alreadyExist=${alreadyExist})}">
     <input type="hidden" th:field="*{id}">
     <div class="actions px-4 mb-4">
       <div class="d-flex justify-content-between">
@@ -27,11 +28,13 @@
             </div>
           </div>
           <div class="d-flex align-items-center mt-2">
-            <a th:href="@{/calculator/create-section}" class="btn btn-outline-light" tabindex="-1" role="button"
+            <a th:href="@{/calculator/create-section/{calculationId}(calculationId=${currentCalculation.id})}"
+               class="btn btn-outline-light" tabindex="-1" role="button"
                aria-disabled="true">Добавить секцию</a>
           </div>
           <div class="d-flex align-items-center mt-2">
-            <a th:href="@{/calculator/object-settings}" class="btn btn-outline-light" tabindex="-1" role="button"
+            <a th:href="@{/calculator/object-settings/{calculationId}(calculationId=${currentCalculation.id})}"
+               class="btn btn-outline-light" tabindex="-1" role="button"
                aria-disabled="true">Добавить объект</a>
           </div>
         </div>
@@ -51,7 +54,8 @@
             </div>
           </div>
           <div class="d-flex align-items-center mt-2 col align-self-end">
-            <input type="submit" class="btn btn-outline-light" th:value="'Выполнить расчет'"/>
+            <input type="submit" class="btn btn-outline-light"
+                   th:value="${alreadyExist ? 'Редактировать расчет' : 'Выполнить расчет'}"/>
           </div>
         </div>
       </div>
@@ -74,7 +78,7 @@
            type="button" class="btn btn-outline-light">Редактировать</a>
       </td>
       <td class="col-md-1">
-        <a th:href="@{/calculator/{id}/delete(id=${section.id})}"
+        <a th:href="@{/calculator/{id}/delete/{calculationId}(id=${section.id}, calculationId=${currentCalculation.id})}"
            type="button" class="btn btn-outline-light">Удалить</a>
       </td>
     </tr>

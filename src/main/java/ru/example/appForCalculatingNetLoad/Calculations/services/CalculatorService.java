@@ -43,15 +43,19 @@ public class CalculatorService {
     }
 
     public CalculationEntity performCalculation(SecurityUser securityUser,
-                                                CalculationEntity calculation) {
+                                                CalculationEntity calculation,
+                                                Boolean alreadyExist) {
         CalculationEntity calculationEntity
                 = getCalculationById(calculation.getId());
         BeanUtils.copyProperties(calculation, calculationEntity,
                 "id", "isCurrent", "user", "sections");
-        calculationEntity.setIsCurrent(false);
 
         saveCalculation(calculationEntity);
 
+        if (alreadyExist) {
+            return calculationEntity;
+        }
+        calculationEntity.setIsCurrent(false);
         return createCalculation(securityUser);
     }
 

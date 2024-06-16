@@ -14,7 +14,7 @@
 
 <body class="castome-tema">
 <div th:replace="fragments/header :: header"></div>
-<form th:action="@{/calculator/create-section}" method="post" th:object="${section}">
+<form th:action="@{/calculator/create-section/{calculationId}(calculationId=${section.calculation.id})}" method="post" th:object="${section}">
   <div class="content center-table form-container">
     <div class=" cmd mb-4">
       <label><input type="hidden" th:field="*{id}"></label>
@@ -81,7 +81,7 @@
                type="button" class="btn btn-outline-light">Редактировать</a>
           </td>
           <td class="col-md-1">
-            <a th:href="@{/calculator/consumers/{id}/delete(id=${section.id})}"
+            <a th:href="@{/calculator/consumers/{consumerId}/delete(consumerId=${consumer.id})}"
                type="button" class="btn btn-outline-light">Удалить</a>
           </td>
         </tr>
