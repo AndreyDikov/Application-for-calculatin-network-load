@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Tables;
+package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.tables;
 
 import java.util.Map;
 

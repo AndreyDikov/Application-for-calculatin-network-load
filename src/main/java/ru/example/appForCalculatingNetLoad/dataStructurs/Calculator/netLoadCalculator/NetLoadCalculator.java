@@ -3,9 +3,9 @@ package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalc
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.Calculator;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.CalculationResult.CalculationResult;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.ObjectForCalculation.ObjectForCalculation;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Section;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.calculationResult.CalculationResult;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.objectForCalculation.ObjectForCalculation;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Section;
 
 import java.util.List;
 
