@@ -1,4 +1,4 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.CalculationResult;
+package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.calculationResult;
 
 import lombok.Getter;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.Calculator;

@@ -1,11 +1,11 @@
-package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.CalculationResult;
+package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.calculationResult;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Consumer;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Consumers;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Tables.Table_7_1;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Tables.Table_7_4;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Consumer;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Consumers;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.tables.Table_7_1;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.tables.Table_7_4;
 
 @Getter
 public class Row {

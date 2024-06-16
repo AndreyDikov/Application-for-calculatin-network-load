@@ -1,7 +1,7 @@
 package ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator;
 
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.ObjectForCalculation.ObjectForCalculation;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Section;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.objectForCalculation.ObjectForCalculation;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Section;
 
 import java.util.ArrayList;
 import java.util.List;

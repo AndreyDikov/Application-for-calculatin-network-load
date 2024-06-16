@@ -53,7 +53,7 @@ public class CalculatorController {
                                     ObjectEntity objectEntity) {
         objectEntity.setUser(securityUser);
         objectEntityService.saveObjectEntity(objectEntity);
-        return "redirect:/calculator";
+        return "calculation-result";
     }
 
     @RequestMapping("/create-section/create-consumer")
