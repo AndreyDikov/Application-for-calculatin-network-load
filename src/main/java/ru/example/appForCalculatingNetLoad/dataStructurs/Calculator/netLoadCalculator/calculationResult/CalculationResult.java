@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 public class CalculationResult {
     private final List<SectionAfterCalculation> updatedSections;
-    private final double calculatedPowerByInputs;
+    private final Double calculatedPowerByInputs;
 
     public CalculationResult(NetLoadCalculator netLoadCalculator) {
         updatedSections = new ArrayList<>();
@@ -21,5 +21,9 @@ public class CalculationResult {
                                         netLoadCalculator.getObject().getCoefficient())));
         calculatedPowerByInputs = Calculator.sumFields(updatedSections, section ->
             Calculator.sumFields(section.getInputs(), Input::getDesignPower));
+    }
+
+    public RoundResult round() {
+        return new RoundResult(this);
     }
 }

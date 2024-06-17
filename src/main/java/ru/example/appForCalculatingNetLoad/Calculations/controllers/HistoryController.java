@@ -15,6 +15,7 @@ import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.Calculator;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.NetLoadCalculator;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.NetLoadCalculatorBuilder;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.calculationResult.CalculationResult;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Consumers;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Section;
 import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.SectionBuilder;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
@@ -68,8 +69,9 @@ public class HistoryController {
             }
             calculatorBuilder.addSection(sectionBuilder.build());
         }
-        Calculator<CalculationResult> calculator = calculatorBuilder.build();
-        model.addAttribute("result", calculator.calculate());
+        NetLoadCalculator calculator = calculatorBuilder.build();
+        CalculationResult result = calculator.calculate();
+        model.addAttribute("result", result);
         return "calculation/calculation-result";
     }
 }

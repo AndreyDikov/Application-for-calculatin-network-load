@@ -58,57 +58,68 @@
     <table class="table table-bordered center-text scaled-table">
       <thead>
       <tr>
-        <th rowspan="3">№ п/п</th>
-        <th rowspan="3">Наименование потребителя</th>
-        <th rowspan="3">Кол-во</th>
-        <th rowspan="1">Установленная мощность на еденицу</th>
-        <th rowspan="1">Установленная мощность</th>
-        <th rowspan="1" colspan="3">Расчетные коэффициенты</th>
-        <th rowspan="1" colspan="2">Коэффициент реактивной мощности</th>
-        <th rowspan="2">Расчетная мощность</th>
-        <th rowspan="2">Реактивная мощность</th>
-        <th rowspan="2">Полная мощность</th>
-        <th rowspan="2">Максимальный расчетный ток</th>
+        <th rowspan="3" style="background-color: #8B9195;">№ п/п</th>
+        <th rowspan="3" style="background-color: #8B9195;">Наименование потребителя</th>
+        <th rowspan="3" style="background-color: #8B9195;">Кол-во</th>
+        <th rowspan="1" style="background-color: #8B9195;">Установленная мощность на еденицу</th>
+        <th rowspan="1" style="background-color: #8B9195;">Установленная мощность</th>
+        <th rowspan="1" colspan="3" style="background-color: #8B9195;">Расчетные коэффициенты</th>
+        <th rowspan="1" colspan="2" style="background-color: #8B9195;">Коэффициент реактивной мощности</th>
+        <th rowspan="2" style="background-color: #8B9195;">Расчетная мощность</th>
+        <th rowspan="2" style="background-color: #5D9CD7;">Реактивная мощность</th>
+        <th rowspan="2" style="background-color: #5D9CD7;">Полная мощность</th>
+        <th rowspan="2" style="background-color: #5D9CD7;">Максимальный расчетный ток</th>
       </tr>
       <tr>
-        <th rowspan="2">Ру.ед., кВт</th>
-        <th rowspan="2">Ру.ед., кВт</th>
-        <th rowspan="1">Поправоченый (региональный коэффициент)</th>
-        <th rowspan="1">Коэффициент спроса</th>
-        <th rowspan="1">Коэффициент несовпадения максимумов</th>
-        <th colspan="1" rowspan="2">Sp</th>
-        <th colspan="1" rowspan="2">lp</th>
+        <th rowspan="2" style="background-color: #8B9195;">Ру.ед., кВт</th>
+        <th rowspan="2" style="background-color: #8B9195;">Ру.ед., кВт</th>
+        <th rowspan="1" style="background-color: #8B9195;">Поправоченый (региональный коэффициент)</th>
+        <th rowspan="1" style="background-color: #8B9195;">Коэффициент спроса</th>
+        <th rowspan="1" style="background-color: #8B9195;">Коэффициент несовпадения максимумов</th>
+        <th colspan="1" rowspan="2" style="background-color: #8B9195;">cos(j)</th>
+        <th colspan="1" rowspan="2" style="background-color: #8B9195;">tg(j)</th>
       </tr>
       <tr>
-        <th colspan="1">Кп.к.</th>
-        <th colspan="1">Кс</th>
-        <th colspan="1">Кн.м.</th>
+        <th colspan="1" style="background-color: #8B9195;">Кп.к.</th>
+        <th colspan="1" style="background-color: #8B9195;">Кс</th>
+        <th colspan="1" style="background-color: #8B9195;">Кн.м.</th>
 
-        <th colspan="1">Рр=Ру*Кс, кВт</th>
-        <th rowspan="1">Cosj</th>
-        <th rowspan="1">tgj</th>
-        <th colspan="1">Qp=Pp*tgq</th>
+        <th colspan="1" style="background-color: #8B9195;">Рр=Ру*Кс, кВт</th>
+        <th rowspan="1" style="background-color: #5D9CD7;">Qр=Рр*tgφ, кВар</th>
+        <th rowspan="1" style="background-color: #5D9CD7;">Sр=√Pp²+Qp², кВА</th>
+        <th colspan="1" style="background-color: #5D9CD7;">Iр=S/√3*U, А</th>
       </tr>
       </thead>
       <tbody th:each="section : ${result.updatedSections}">
-      <tr><td colspan="14" th:text="${section.name}"></td></tr>
-      <tr>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-        <td>3</td>
-      </tr>
-
+      <tr><td colspan="14" th:text="${section.name}" style="background-color: #DADC92;"></td></tr>
+      <div th:each="input,i : ${section.inputs}">
+        <tr><td colspan="14" th:text="'Ввод ' + ${i.index + 1}" style="background-color: pink;"></td></tr>
+        <tr th:each="row,j : ${input.rows}">
+          <td th:text="${j.index + 1}"></td>
+          <td th:text="${row.consumer.name}"></td>
+          <td th:text="${row.consumer.consumer.coefficient}"></td>
+          <td th:text="${row.consumer.number}"></td>
+          <td th:text="${row.installedPower}"></td>
+          <td th:text="${row.regionFactor}"></td>
+          <td th:text="${row.demandFactor}"></td>
+          <td th:text="${row.maxMismatchFactor}"></td>
+          <td th:text="${row.consumer.consumer.cos}"></td>
+          <td th:text="${row.tg}"></td>
+          <td th:text="${row.designPower}"></td>
+          <td th:text="${row.reactivePower}" style="background-color: #5D9CD7;"></td>
+          <td th:text="${row.fullPower}" style="background-color: #5D9CD7;"></td>
+          <td th:text="${row.maxRatedCurrent}" style="background-color: #5D9CD7;"></td>
+        </tr>
+        <tr>
+          <td colspan="8" th:text="'Итого по вводу ' + ${i.index + 1}" style="font-weight: bold;"></td>
+          <td th:text="${input.cos}" style="font-weight: bold;"></td>
+          <td th:text="${input.tg}" style="font-weight: bold;"></td>
+          <td th:text="${input.designPower}" style="font-weight: bold;"></td>
+          <td th:text="${input.reactivePower}" style="background-color: #5D9CD7; font-weight: bold;"></td>
+          <td th:text="${input.fullPower}" style="background-color: #5D9CD7; font-weight: bold;"></td>
+          <td th:text="${input.maxRatedCurrent}" style="background-color: #5D9CD7; font-weight: bold;"></td>
+        </tr>
+      </div>
       </tbody>
     </table>
   </div>
@@ -116,17 +127,16 @@
     <div class="d-flex flex-column">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата создания</span>
-        <input class="form-control" disabled type="text" value="17.06.2024">
+        <input class="form-control" disabled type="text" value="18.06.2024">
       </div>
       <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата
             редактирования</span>
-        <input class="form-control" disabled type="text" value="17.06.2024">
+        <input class="form-control" disabled type="text" value="18.06.2024">
       </div>
       <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Расчетная мощность по
-            вводам</span>
-        <input class="form-control" disabled type="text" value="С6/6/6/6">
+          <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Расчетная мощность по вводам</span>
+        <input class="form-control" disabled type="text" th:value="${result.calculatedPowerByInputs}">
       </div>
     </div>
   </div>
