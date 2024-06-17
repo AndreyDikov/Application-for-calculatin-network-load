@@ -41,7 +41,7 @@
             Примечание
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Я хз какие-то коментарии, речи о великом о звездах и платежки за воду</li>
+            <li class="list-group-item" th:text="${calculation.note}"></li>
           </ul>
         </div>
       </div>
@@ -90,7 +90,8 @@
         <th colspan="1">Qp=Pp*tgq</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody th:each="section : ${result.updatedSections}">
+      <tr><td colspan="14" th:text="${section.name}"></td></tr>
       <tr>
         <td>3</td>
         <td>3</td>
@@ -115,12 +116,12 @@
     <div class="d-flex flex-column">
       <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата создания</span>
-        <input class="form-control" disabled type="text" value="6/6/6/6">
+        <input class="form-control" disabled type="text" value="17.06.2024">
       </div>
       <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Дата
             редактирования</span>
-        <input class="form-control" disabled type="text" value="6/6/6/6">
+        <input class="form-control" disabled type="text" value="17.06.2024">
       </div>
       <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon2" style="background-color: #E7DDD4;" dis>Расчетная мощность по

@@ -8,7 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.example.appForCalculatingNetLoad.Calculations.entities.CalculationEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.ConsumerEntity;
+import ru.example.appForCalculatingNetLoad.Calculations.entities.SectionEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.services.CalculatorService;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.Calculator;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.NetLoadCalculator;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.NetLoadCalculatorBuilder;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.calculationResult.CalculationResult;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Section;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.SectionBuilder;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
 import java.util.Comparator;
@@ -26,6 +34,12 @@ public class HistoryController {
                                  Model model) {
         List<CalculationEntity> allCalculationsByUser
                 = calculatorService.getALlCalculationsByUser(securityUser);
+        for (CalculationEntity calculation : allCalculationsByUser) {
+            if (calculation.getIsCurrent()) {
+                allCalculationsByUser.remove(calculation);
+                break;
+            }
+        }
         allCalculationsByUser.sort(Comparator.comparing(CalculationEntity::getId));
 
         model.addAttribute("userCalculations", allCalculationsByUser);
@@ -41,6 +55,21 @@ public class HistoryController {
 
         model.addAttribute("calculation", calculation);
 
+        NetLoadCalculatorBuilder calculatorBuilder = NetLoadCalculator.builder()
+                .object(calculation.getObject().getRegion());
+        for (SectionEntity section : calculation.getSections()) {
+            SectionBuilder sectionBuilder = Section.builder()
+                    .name(section.getName())
+                    .limitation(section.getLimitValue());
+            for (ConsumerEntity consumer : section.getConsumers()) {
+                sectionBuilder.addConsumer(consumer.getType()
+                        , consumer.getNumber()
+                        , consumer.getName());
+            }
+            calculatorBuilder.addSection(sectionBuilder.build());
+        }
+        Calculator<CalculationResult> calculator = calculatorBuilder.build();
+        model.addAttribute("result", calculator.calculate());
         return "calculation/calculation-result";
     }
 }

@@ -3,7 +3,7 @@ package ru.example.appForCalculatingNetLoad.Calculations.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Consumers;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Consumers;
 
 @Getter
 @Setter

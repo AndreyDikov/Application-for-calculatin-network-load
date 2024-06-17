@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Builder
 public class Consumer {
+    private String name;
     private Consumers consumer;
     @Setter private int number;
 

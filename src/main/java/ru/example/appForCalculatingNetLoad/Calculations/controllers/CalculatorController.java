@@ -14,7 +14,7 @@ import ru.example.appForCalculatingNetLoad.Calculations.entities.SectionEntity;
 import ru.example.appForCalculatingNetLoad.Calculations.services.CalculatorService;
 import ru.example.appForCalculatingNetLoad.Calculations.services.ObjectEntityService;
 import ru.example.appForCalculatingNetLoad.Calculations.services.SectionService;
-import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.ObjectForCalculation.Regions;
+import ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.objectForCalculation.Regions;
 import ru.example.appForCalculatingNetLoad.security.securityUsers.entities.SecurityUser;
 
 import java.util.ArrayList;

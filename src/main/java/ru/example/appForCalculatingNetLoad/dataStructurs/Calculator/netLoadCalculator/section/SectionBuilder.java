@@ -23,8 +23,9 @@ public class SectionBuilder {
         return this;
     }
 
-    public SectionBuilder addConsumer(Consumers consumer, int number) {
+    public SectionBuilder addConsumer(Consumers consumer, int number, String name) {
         this.consumers.add(Consumer.builder()
+                .name(name)
                 .consumer(consumer)
                 .number(number)
                 .build());

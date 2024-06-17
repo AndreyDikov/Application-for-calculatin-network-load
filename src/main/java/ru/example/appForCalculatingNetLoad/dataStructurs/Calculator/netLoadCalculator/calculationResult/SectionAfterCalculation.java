@@ -108,10 +108,12 @@ public class SectionAfterCalculation {
         int number1 = consumer.getNumber() / 2;
         return List.of(
                 Consumer.builder()
+                        .name(consumer.getName())
                         .consumer(consumer.getConsumer())
                         .number(number1)
                         .build(),
                 Consumer.builder()
+                        .name(consumer.getName())
                         .consumer(consumer.getConsumer())
                         .number(consumer.getNumber() - number1)
                         .build());

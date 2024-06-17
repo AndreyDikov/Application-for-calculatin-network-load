@@ -19,9 +19,7 @@
   <table class="table table-bordered center-text center-table">
     <thead>
     <tr>
-      <th>Дата</th>
       <th>Номер</th>
-      <th>Дата последнего обновления</th>
       <th>Объект</th>
       <th>Примечание</th>
       <th>Заказчик</th>
@@ -29,10 +27,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="calculation : ${userCalculations}">
-      <td>13.06.2024</td>
-      <td th:text="${calculation.id}">12345</td>
-      <td>13.06.2024</td>
+    <tr th:each="calculation,iter : ${userCalculations}">
+      <td th:text="${iter.index + 1}">12345</td>
       <td th:text="${calculation.object?.name}">Объект 1</td>
       <td th:text="${calculation.note}">Примечание 1</td>
       <td th:text="${calculation.customer}">Заказчик 1</td>
