@@ -30,7 +30,7 @@
         <label class="input-group-text" style="background-color: #E7DDD4;">Наименование потребителя</label>
         <select class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" name="gender"
                 th:field="*{type}">
-          <option th:each="cType : ${T(ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.Section.Consumers).values()}"
+          <option th:each="cType : ${T(ru.example.appForCalculatingNetLoad.dataStructurs.Calculator.netLoadCalculator.section.Consumers).values()}"
                   th:value="${cType}"
                   th:text="${cType.getName()}"></option>
         </select>
